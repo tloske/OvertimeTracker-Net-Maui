@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OvertimeTracker.Views.AddPage"
+             Title="Add">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" 
+          ColumnDefinitions="Auto,Auto"
+          HorizontalOptions="Center" 
+          VerticalOptions="CenterAndExpand"
+          Padding="10"          
+          RowSpacing="100"
+          ColumnSpacing="10">
+
+        <Label Text="Date" VerticalOptions="Center"/>
+        <DatePicker Grid.Column="1" Date="{Binding Date}"/>
+
+        <Label Grid.Row="1" Text="Start" VerticalOptions="Center" FontSize="16"/>
+        <TimePicker Grid.Row="1" Grid.Column="1" Time="{Binding Start}" />
+        
+        <Label Grid.Row="2" Text="End" VerticalOptions="Center" FontSize="16"/>
+        <TimePicker Grid.Row="2" Grid.Column="1" Time="{Binding End}"/>
+
+        <Label Grid.Row="3" Text="Multiplier" VerticalOptions="Center"/>
+        <Entry Grid.Row="3" Grid.Column="1" Keyboard="Numeric" Placeholder="Multiplier" Text="{Binding Multiplier}" HorizontalTextAlignment="Center"/>
+        
+        <Label Grid.Row="4" Grid.ColumnSpan="2" Text="{Binding Path='Overtime' ,StringFormat='{}Overtime: {0}'}" HorizontalOptions="Center" FontSize="24"/>
+        <Button Grid.Row="5" Grid.ColumnSpan="2" Text="Add" Command="{Binding AddCommand}"/>
+    </Grid>
+</ContentPage>

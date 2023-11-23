@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OvertimeTracker.MainPage"
+             xmlns:viewmodel="clr-namespace:OvertimeTracker.ViewModels"
+             xmlns:model="clr-namespace:OvertimeTracker.Models"
+             x:DataType="viewmodel:MainViewModel">
+
+    <Grid RowDefinitions="100,*,Auto" Padding="10" RowSpacing="10">
+        <Label HorizontalOptions="Center" Text="adsad"/>
+        <CollectionView Grid.Row="1" ItemsSource="{Binding OvertimeList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type model:OvertimeData}">
+                    <Frame>
+                        <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,*">
+                            <Label Text="{Binding Path=Date, StringFormat='{0:dd.MM.yyyy}'}"/>
+                            <Label Grid.Row="1">
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{}{0:hh:mm} - {1:hh:mm}">
+                                        <Binding Path="Start"/>
+                                        <Binding Path="End"/>
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                            <Label Grid.RowSpan="2" Grid.Column="1" Text="{Binding Overtime}" HorizontalOptions="End" VerticalOptions="Center"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Grid.Row="2" HorizontalOptions="Center" Text="Add" Command="{Binding AddCommand}"/>
+    </Grid>
+
+</ContentPage>
